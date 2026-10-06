@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LunaCart | Field-tested gear, made to last</title>
+    <meta
+      name="description"
+      content="LunaCart — premium outdoor and everyday gear with an admin dashboard, live cart, and a shopping experience built to feel less like a template."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Preloader: one orchestrated entrance moment -->
+    <div class="preloader" id="preloader" aria-hidden="true">
+      <span class="preloader-mark">L</span>
+    </div>
+
+    <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+    <div class="auth-overlay hidden" id="authOverlay">
+      <div class="auth-card">
+        <div class="auth-header">
+          <div>
+            <span class="eyebrow">Welcome back</span>
+            <h2 id="authTitle">Sign in</h2>
+          </div>
+          <button class="close-auth" id="closeAuth" aria-label="Close">✕</button>
+        </div>
+
+        <div class="auth-toggle">
+          <button class="auth-mode active" data-mode="signin" type="button">Sign in</button>
+          <button class="auth-mode" data-mode="signup" type="button">Create account</button>
+        </div>
+
+        <form id="signinForm" class="auth-form active">
+          <label>
+            <span>Email</span>
+            <input type="email" id="signinEmail" placeholder="admin@lunacart.com" required />
+          </label>
+          <label>
+            <span>Password</span>
+            <input type="password" id="signinPassword" placeholder="admin123" required />
+          </label>
+          <button type="submit" class="primary-btn auth-submit">Continue</button>
+          <p class="auth-hint">Tip: use the admin email above to view the dashboard.</p>
+        </form>
+
+        <form id="signupForm" class="auth-form">
+          <label>
+            <span>Full name</span>
+            <input type="text" id="signupName" placeholder="Your name" required />
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" id="signupEmail" placeholder="you@example.com" required />
+          </label>
+          <label>
+            <span>Password</span>
+            <input type="password" id="signupPassword" placeholder="Create a password" required />
+          </label>
+          <button type="submit" class="primary-btn auth-submit">Create account</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="page-shell">
+      <header class="topbar" id="topbar">
+        <div class="brand-wrap">
+          <div class="brand-icon">L</div>
+          <span class="brand-name">LunaCart</span>
+        </div>
+
+        <nav class="main-nav" id="mainNav">
+          <a href="#home">Home</a>
+          <a href="products.html">Products</a>
+          <a href="#shop">Shop</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#dashboard" class="admin-link admin-only">Dashboard</a>
+        </nav>
+
+        <div class="header-actions">
+          <div class="search-wrap">
+            <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="5.5"></circle>
+              <path d="M16 16L21 21"></path>
+            </svg>
+            <input
+              type="text"
+              id="searchInput"
+              class="search-input"
+              placeholder="Search gear…"
+              aria-label="Search products"
+            />
+          </div>
+          <button class="icon-btn cart-toggle" aria-label="Open cart">
+            <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 4h2l2.2 9.2a1 1 0 0 0 .98.8h8.7a1 1 0 0 0 .98-.8L20 7H7"></path>
+              <circle cx="10" cy="18" r="1.6"></circle>
+              <circle cx="17" cy="18" r="1.6"></circle>
+            </svg>
+            <span class="cart-count">0</span>
+          </button>
+          <button class="user-pill" id="userPill">Log in</button>
+          <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero" id="home">
+          <div class="hero-copy">
+            <span class="eyebrow">Autumn field collection</span>
+            <h1>Gear built for the miles you actually put in.</h1>
+            <p>
+              No filler, no seasonal gimmicks — just tested materials, honest pricing, and shipping
+              that keeps its word. Browse the collection or peek behind the counter.
+            </p>
+
+            <div class="cta-row">
+              <a href="#shop" class="primary-btn">Shop the collection</a>
+              <a href="#dashboard" class="secondary-btn">View dashboard</a>
+            </div>
+
+            <ul class="hero-metrics">
+              <li>
+                <strong data-count="12400">0</strong>
+                <span>gear owners</span>
+              </li>
+              <li>
+                <strong data-count="49" data-decimal="1">0</strong>
+                <span>average rating / 5</span>
+              </li>
+              <li>
+                <strong data-count="48">0</strong>
+                <span>hour dispatch</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="hero-visual">
+            <div class="hero-summary-card">
+              <div class="summary-pill">Field edition</div>
+              <h3>Luxury utility.</h3>
+              <div class="summary-row">
+                <div>
+                  <span>Season</span>
+                  <strong>Autumn</strong>
+                </div>
+                <div>
+                  <span>Range</span>
+                  <strong>12 styles</strong>
+                </div>
+              </div>
+              <div class="summary-list">
+                <span>Structured build</span>
+                <span>Premium canvas</span>
+                <span>Replacement parts</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        
+
+        <section class="shop-section reveal" id="shop">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Curated picks</span>
+              <h2>Featured products</h2>
+            </div>
+            <div class="filter-bar" id="filterBar">
+              <button class="filter-btn active" data-filter="All" type="button">All</button>
+              <button class="filter-btn" data-filter="Electronics" type="button">Electronics</button>
+              <button class="filter-btn" data-filter="Fashion" type="button">Fashion</button>
+              <button class="filter-btn" data-filter="Accessories" type="button">Accessories</button>
+            </div>
+          </div>
+
+          <div class="product-grid" id="productGrid"></div>
+        </section>
+
+        <section class="promo-banner reveal">
+          <div class="promo-copy">
+            <span class="eyebrow">Members only</span>
+            <h3>Save up to 50% on premium home essentials.</h3>
+            <p>Join the list and the discount applies automatically at checkout.</p>
+          </div>
+          <button class="primary-btn" id="unlockDeal">Unlock the deal</button>
+        </section>
+
+        <section class="dashboard reveal admin-only" id="dashboard">
+          <div class="section-head dashboard-head">
+            <div>
+              <span class="eyebrow">Operations overview</span>
+              <h2>Admin dashboard</h2>
+            </div>
+            <button class="secondary-btn dark-btn" id="generateReport">Generate report</button>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card accent">
+              <span>Revenue</span>
+              <strong class="stat-total-sales">$0</strong>
+              <small>+18.4% this month</small>
+            </article>
+            <article class="stat-card">
+              <span>Orders</span>
+              <strong class="stat-orders">0</strong>
+              <small>412 fulfilled</small>
+            </article>
+            <article class="stat-card">
+              <span>Visitors</span>
+              <strong class="stat-visitors">0</strong>
+              <small>+26.8% vs last week</small>
+            </article>
+            <article class="stat-card">
+              <span>Conversion</span>
+              <strong class="stat-conversion">0%</strong>
+              <small>Target 5.2%</small>
+            </article>
+          </div>
+
+          <div class="dashboard-layout">
+            <div class="chart-panel panel">
+              <div class="panel-head">
+                <h3>Sales overview</h3>
+                <span>Last 7 days</span>
+              </div>
+              <div class="chart-bars" id="chartBars">
+                <div class="bar-group"><span class="bar" style="--height: 48%"></span><label>Mon</label></div>
+                <div class="bar-group"><span class="bar" style="--height: 68%"></span><label>Tue</label></div>
+                <div class="bar-group"><span class="bar" style="--height: 58%"></span><label>Wed</label></div>
+                <div class="bar-group"><span class="bar" style="--height: 84%"></span><label>Thu</label></div>
+                <div class="bar-group"><span class="bar" style="--height: 72%"></span><label>Fri</label></div>
+                <div class="bar-group"><span class="bar" style="--height: 92%"></span><label>Sat</label></div>
+                <div class="bar-group"><span class="bar" style="--height: 76%"></span><label>Sun</label></div>
+              </div>
+            </div>
+
+            <div class="inventory-panel panel">
+              <div class="panel-head">
+                <h3>Inventory</h3>
+                <span>Live status</span>
+              </div>
+              <div class="inventory-list">
+                <div class="inventory-row">
+                  <span>AeroFit Pro</span>
+                  <div class="progress"><i style="width: 72%"></i></div>
+                  <small>72%</small>
+                </div>
+                <div class="inventory-row">
+                  <span>Nova Pulse</span>
+                  <div class="progress"><i style="width: 54%"></i></div>
+                  <small>54%</small>
+                </div>
+                <div class="inventory-row">
+                  <span>Summit Hoodie</span>
+                  <div class="progress"><i style="width: 88%"></i></div>
+                  <small>88%</small>
+                </div>
+                <div class="inventory-row">
+                  <span>Deck Mini</span>
+                  <div class="progress"><i style="width: 36%"></i></div>
+                  <small>36%</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel order-panel">
+            <div class="panel-head">
+              <h3>Recent orders</h3>
+              <span>Updated minutes ago</span>
+            </div>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Product</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="ordersTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="reviews reveal" id="reviews">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Customer love</span>
+              <h2>What people are saying</h2>
+            </div>
+          </div>
+
+          <div class="review-grid">
+            <article class="review-card">
+              <div class="stars">★★★★★</div>
+              <p>Shipping was fast and the quality feels premium — it looks even better in person.</p>
+              <div class="review-user">
+                <strong>Maria J.</strong>
+                <span>Verified buyer</span>
+              </div>
+            </article>
+            <article class="review-card">
+              <div class="stars">★★★★★</div>
+              <p>The site experience is seamless. I found exactly what I wanted in under five minutes.</p>
+              <div class="review-user">
+                <strong>Daniel K.</strong>
+                <span>Verified buyer</span>
+              </div>
+            </article>
+            <article class="review-card">
+              <div class="stars">★★★★★</div>
+              <p>Support and product quality were excellent. I would absolutely shop here again.</p>
+              <div class="review-user">
+                <strong>Rae T.</strong>
+                <span>Verified buyer</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="newsletter reveal">
+          <div>
+            <span class="eyebrow">Stay in the loop</span>
+            <h2>Get early access to restocks and drops.</h2>
+          </div>
+          <form class="newsletter-form" id="newsletterForm">
+            <input type="email" placeholder="you@example.com" aria-label="Email address" required />
+            <button type="submit" class="primary-btn">Subscribe</button>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-wrap footer-brand">
+            <div class="brand-icon">L</div>
+            <span class="brand-name">LunaCart</span>
+          </div>
+          <p class="footer-copy">
+            Premium gear, sharp design, and a shopping experience built for everyday living.
+          </p>
+        </div>
+
+        <div>
+          <h4>Shop</h4>
+          <ul>
+            <li>New arrivals</li>
+            <li>Best sellers</li>
+            <li>Accessories</li>
+            <li>Gift cards</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li>About us</li>
+            <li>Support</li>
+            <li>Careers</li>
+            <li>Partners</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Follow</h4>
+          <ul>
+            <li>Instagram</li>
+            <li>Twitter</li>
+            <li>Facebook</li>
+            <li>LinkedIn</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 LunaCart</span>
+        <span>Privacy Policy</span>
+        <span>Terms</span>
+      </div>
+    </footer>
+
+    <aside class="cart-drawer" aria-label="Shopping cart">
+      <div class="cart-header">
+        <h3>Your cart</h3>
+        <button class="close-cart" aria-label="Close cart">✕</button>
+      </div>
+      <div class="cart-items" id="cartItems"></div>
+
+      <div class="cart-footer">
+        <div class="totals">
+          <span>Subtotal</span>
+          <strong id="cartTotal">$0.00</strong>
+        </div>
+        <button class="checkout-btn">Proceed to checkout</button>
+      </div>
+    </aside>
+
+    <div class="cart-overlay"></div>
+
+    <div class="quick-view" id="quickView" aria-hidden="true">
+      <div class="quick-view-card" id="quickViewCard"></div>
+    </div>
+
+    <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+
+    <script src="script.js"></script>
+  </body>
+</html>

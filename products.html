@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products | LunaCart</title>
+    <meta
+      name="description"
+      content="Browse LunaCart offerings with premium everyday carry, apparel, and accessories."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+    <div class="auth-overlay hidden" id="authOverlay">
+      <div class="auth-card">
+        <div class="auth-header">
+          <div>
+            <span class="eyebrow">Welcome back</span>
+            <h2>Sign in</h2>
+          </div>
+          <button class="close-auth" id="closeAuth" aria-label="Close">✕</button>
+        </div>
+
+        <div class="auth-toggle">
+          <button class="auth-mode active" data-mode="signin" type="button">Sign in</button>
+          <button class="auth-mode" data-mode="signup" type="button">Create account</button>
+        </div>
+
+        <form id="signinForm" class="auth-form active">
+          <label>
+            <span>Email</span>
+            <input type="email" id="signinEmail" placeholder="raheelraza@gmail.com" required />
+          </label>
+          <label>
+            <span>Password</span>
+            <input type="password" id="signinPassword" placeholder="raheelraza" required />
+          </label>
+          <button type="submit" class="primary-btn auth-submit">Continue</button>
+          <p class="auth-hint">Admin login is available with the credentials above.</p>
+        </form>
+
+        <form id="signupForm" class="auth-form">
+          <label>
+            <span>Full name</span>
+            <input type="text" id="signupName" placeholder="Your name" required />
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" id="signupEmail" placeholder="you@example.com" required />
+          </label>
+          <label>
+            <span>Password</span>
+            <input type="password" id="signupPassword" placeholder="Create a password" required />
+          </label>
+          <button type="submit" class="primary-btn auth-submit">Create account</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="page-shell product-page-shell">
+      <header class="topbar" id="topbar">
+        <div class="brand-wrap">
+          <div class="brand-icon">L</div>
+          <span class="brand-name">LunaCart</span>
+        </div>
+
+        <nav class="main-nav" id="mainNav">
+          <a href="index.html">Home</a>
+          <a href="products.html">Products</a>
+          <a href="index.html#shop">Shop</a>
+          <a href="index.html#reviews">Reviews</a>
+          <a href="index.html#dashboard" class="admin-link admin-only">Dashboard</a>
+        </nav>
+
+        <div class="header-actions">
+          <div class="search-wrap">
+            <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="5.5"></circle>
+              <path d="M16 16L21 21"></path>
+            </svg>
+            <input
+              type="text"
+              id="searchInput"
+              class="search-input"
+              placeholder="Search gear…"
+              aria-label="Search products"
+            />
+          </div>
+          <button class="icon-btn cart-toggle" aria-label="Open cart">
+            <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 4h2l2.2 9.2a1 1 0 0 0 .98.8h8.7a1 1 0 0 0 .98-.8L20 7H7"></path>
+              <circle cx="10" cy="18" r="1.6"></circle>
+              <circle cx="17" cy="18" r="1.6"></circle>
+            </svg>
+            <span class="cart-count">0</span>
+          </button>
+          <button class="user-pill" id="userPill">Log in</button>
+          <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="product-page-hero reveal">
+          <div>
+            <span class="eyebrow">All gear</span>
+            <h1>Built for workdays, weekends, and everything in between.</h1>
+          </div>
+          <a href="index.html#shop" class="secondary-btn">Back to home</a>
+        </section>
+
+        <section class="product-banner reveal">
+          <div>
+            <span class="eyebrow">Limited drop</span>
+            <h2>Crafted essentials for slow mornings and long routes.</h2>
+          </div>
+          <button class="primary-btn">Get the drop</button>
+        </section>
+
+        <section class="shop-section reveal" aria-label="Products listing">
+          <div class="section-head product-head">
+            <div>
+              <span class="eyebrow">Full catalog</span>
+              <h2>Everything we make</h2>
+            </div>
+            <div class="filter-bar" id="filterBar">
+              <button class="filter-btn active" data-filter="All" type="button">All</button>
+              <button class="filter-btn" data-filter="Electronics" type="button">Electronics</button>
+              <button class="filter-btn" data-filter="Fashion" type="button">Fashion</button>
+              <button class="filter-btn" data-filter="Accessories" type="button">Accessories</button>
+            </div>
+          </div>
+
+          <div class="product-grid" id="productPageGrid"></div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-wrap footer-brand">
+            <div class="brand-icon">L</div>
+            <span class="brand-name">LunaCart</span>
+          </div>
+          <p class="footer-copy">
+            Premium gear for modern routines, designed to keep pace without feeling loud.
+          </p>
+        </div>
+
+        <div>
+          <h4>Shop</h4>
+          <ul>
+            <li>Best sellers</li>
+            <li>Accessories</li>
+            <li>Apparel</li>
+            <li>Gift cards</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li>Our story</li>
+            <li>Support</li>
+            <li>Journal</li>
+            <li>Careers</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Follow</h4>
+          <ul>
+            <li>Instagram</li>
+            <li>Twitter</li>
+            <li>Facebook</li>
+            <li>LinkedIn</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 LunaCart</span>
+        <span>Privacy Policy</span>
+        <span>Terms</span>
+      </div>
+    </footer>
+
+    <aside class="cart-drawer" aria-label="Shopping cart">
+      <div class="cart-header">
+        <h3>Your cart</h3>
+        <button class="close-cart" aria-label="Close cart">✕</button>
+      </div>
+      <div class="cart-items" id="cartItems"></div>
+
+      <div class="cart-footer">
+        <div class="totals">
+          <span>Subtotal</span>
+          <strong id="cartTotal">$0.00</strong>
+        </div>
+        <button class="checkout-btn">Proceed to checkout</button>
+      </div>
+    </aside>
+
+    <div class="cart-overlay"></div>
+
+    <div class="quick-view" id="quickView" aria-hidden="true">
+      <div class="quick-view-card" id="quickViewCard"></div>
+    </div>
+
+    <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+
+    <script src="script.js"></script>
+  </body>
+</html>
